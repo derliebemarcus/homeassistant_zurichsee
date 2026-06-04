@@ -4,11 +4,11 @@
 # pytest==9.0.3
 # pytest-homeassistant-custom-component is installed manually via --no-deps in CI/Makefile
 # to bypass its strict pytest==9.0.0 pin. Do not uncomment.
-# pytest-homeassistant-custom-component==0.13.332
+# pytest-homeassistant-custom-component==0.13.335
 pytest-asyncio==1.3.0
 aioresponses>=0.7.8
 pytest-cov
-pytest-homeassistant-custom-component==0.13.332
+pytest-homeassistant-custom-component==0.13.335
 ruff>=0.15.14
 mypy>=2.1.0
 mutmut>=3.5.0
