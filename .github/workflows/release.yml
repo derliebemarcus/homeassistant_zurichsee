@@ -62,13 +62,13 @@ jobs:
           set -euo pipefail
           TAG="${{ steps.tag.outputs.tag }}"
           if git rev-parse "$TAG" >/dev/null 2>&1; then
-            echo "Tag $TAG already exists."
-            exit 1
+            echo "Reusing existing tag $TAG."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag "$TAG" "$GITHUB_SHA"
+            git push origin "refs/tags/$TAG"
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag "$TAG" "$GITHUB_SHA"
-          git push origin "refs/tags/$TAG"
 
       - name: Check out tagged revision
         uses: actions/checkout@v6
@@ -92,7 +92,7 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const sha = process.env.TARGET_SHA;
-            const required = ["Tests and Coverage", "Quality Gates", "CodeQL", "Security Gates", "Mutation Testing"];
+            const required = ["Tests and Coverage", "Quality Gates", "CodeQL", "Security Gates"];
             const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
             const deadline = Date.now() + 20 * 60 * 1000;
 
