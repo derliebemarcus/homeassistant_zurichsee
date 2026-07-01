@@ -62,8 +62,8 @@ module = "voluptuous.*"
 ignore_errors = true
 
 [tool.mutmut]
-also_copy = ["custom_components"]
-source_paths = [
+source_paths = ["custom_components/"]
+only_mutate = [
   "custom_components/zurichsee_ha/api.py",
   "custom_components/zurichsee_ha/coordinator.py",
   "custom_components/zurichsee_ha/models.py",
