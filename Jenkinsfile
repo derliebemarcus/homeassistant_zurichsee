@@ -1,5 +1,22 @@
 @Library('jenkins-shared-library@main') _
 
+if (ciDocumentationOnlyShortcut(
+    scm: scm,
+    agentLabel: 'klymene',
+    repository: [
+        owner: 'derliebemarcus',
+        name: 'homeassistant_zurichsee',
+    ],
+    github: [
+        credentialId: 'github token',
+        statusContext: 'Continuous Integration / Jenkins',
+        title: 'Zürichsee Quality Gates',
+    ],
+)) {
+    return
+}
+
+
 ciHomeAssistantIntegration(
     scm: scm,
     agentLabel: 'klymene',
