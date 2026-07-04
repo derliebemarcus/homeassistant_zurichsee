@@ -59,3 +59,7 @@ This integration uses the [tecdottir API](https://tecdottir.herokuapp.com/docs/)
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Detailed documentation
+
+Architecture, development, compatibility, and operations for Zürichsee Wetterstationen Home Assistant Integration are documented in [docs/index.md](docs/index.md).
