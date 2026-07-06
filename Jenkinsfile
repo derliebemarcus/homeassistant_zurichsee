@@ -34,31 +34,13 @@ ciHomeAssistantIntegration(
     componentPath: 'custom_components/zurichsee_ha',
     manifestPath: 'custom_components/zurichsee_ha/manifest.json',
     pythonVersion: '3.14',
-    pythonCommand: 'python3',
+    virtualEnvironment: '.venv',
+    pythonCommand: '.venv/bin/python',
     requirementsFile: 'requirements-dev.txt',
     constraintsFile: 'constraints.txt',
     testPaths: ['tests/unit', 'tests/ha'],
     coverageFloor: 97.1,
     reportRoot: 'reports',
-    environment: [
-        PYENV_ROOT: '/opt/python',
-        PYENV_VERSION: '3.14',
-        PATH: '/opt/python/shims:/opt/python/bin:/usr/local/bin:/usr/bin:/bin',
-    ],
-    runtime: [
-        mode: 'container',
-        image: 'registry.home.siczb.de/siczb/python-ci:latest',
-        engine: 'podman',
-        shell: '/bin/bash',
-        pullPolicy: 'never',
-        keepId: true,
-    ],
-    workspaceNormalizationCommand: '''
-        set +e
-        [ -e "$WORKSPACE" ] || exit 0
-        sudo chown -R "$(id -u):$(id -g)" "$WORKSPACE" || true
-        sudo chmod -R u+rwX "$WORKSPACE" || true
-    ''',
     prepareCommand: 'chmod 700 tools/jenkins_prepare.sh && tools/jenkins_prepare.sh',
     commands: [
         pytest: 'chmod 700 tools/jenkins_python_tasks.sh && tools/jenkins_python_tasks.sh pytest',
