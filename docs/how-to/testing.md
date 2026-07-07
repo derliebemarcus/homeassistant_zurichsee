@@ -1,12 +1,21 @@
 # Testing
 
-Run the repository's local quality checks before opening a pull request:
+Create the same project environment used by Jenkins:
 
 ```bash
-python3 -m pytest tests/unit tests/ha
-ruff check .
-ruff format --check .
-mypy .
+bash tools/jenkins_prepare.sh
 ```
 
-Jenkins remains authoritative for the complete quality, analysis, security, and release contract.
+Run tests and static analysis through that environment:
+
+```bash
+.venv/bin/python -m pytest tests/unit tests/ha
+.venv/bin/python -m ruff check .
+.venv/bin/python -m ruff format --check .
+.venv/bin/python -m mypy .
+```
+
+Jenkins runs these commands in the shared Python 3.14 Home Assistant integration CI
+image. The image contains common CI tooling but no repository source or project
+dependencies. `tools/jenkins_prepare.sh` installs `requirements-dev.txt` with
+`constraints.txt` once, and the bootstrap stash restores `.venv` in parallel stages.
