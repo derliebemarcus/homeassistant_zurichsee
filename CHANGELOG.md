@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.10
+
+### Patch Changes
+
+- 411b278: Migrate the integration pipeline to the shared Python 3.14 CI image while retaining the
+  one-time repository-owned `.venv` bootstrap.
+
 ## 0.1.9
 
 ### Patch Changes
