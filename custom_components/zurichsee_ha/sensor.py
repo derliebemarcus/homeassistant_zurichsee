@@ -13,12 +13,24 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
-    PERCENTAGE,
     UnitOfLength,
     UnitOfPressure,
     UnitOfSpeed,
     UnitOfTemperature,
 )
+
+try:
+    from homeassistant.const import UnitOfRatio
+except ImportError:
+    # Fallback for Home Assistant < 2026.7
+    from homeassistant.const import PERCENTAGE
+
+    class UnitOfRatio:
+        """Fallback for UnitOfRatio in Home Assistant < 2026.7."""
+
+        PERCENTAGE = PERCENTAGE
+
+
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
@@ -95,7 +107,7 @@ SENSOR_DESCRIPTIONS: tuple[ZurichseeSensorEntityDescription, ...] = (
         translation_key="humidity",
         device_class=SensorDeviceClass.HUMIDITY,
         state_class=SensorStateClass.MEASUREMENT,
-        native_unit_of_measurement=PERCENTAGE,
+        native_unit_of_measurement=UnitOfRatio.PERCENTAGE,
         suggested_display_precision=0,
     ),
     ZurichseeSensorEntityDescription(
