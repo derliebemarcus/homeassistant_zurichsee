@@ -2,4 +2,4 @@
 "homeassistant_zurichsee": patch
 ---
 
-Use Home Assistant's supported ratio unit for humidity percentage sensors.
+Use Home Assistant's supported `UnitOfRatio.PERCENTAGE` metadata for humidity sensors.
