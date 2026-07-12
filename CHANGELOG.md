@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.11
+
+### Patch Changes
+
+- c135c38: Use Home Assistant's supported `UnitOfRatio.PERCENTAGE` metadata for humidity sensors.
+
 ## 0.1.10
 
 ### Patch Changes
