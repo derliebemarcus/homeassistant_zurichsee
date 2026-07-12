@@ -13,9 +13,9 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
-    PERCENTAGE,
     UnitOfLength,
     UnitOfPressure,
+    UnitOfRatio,
     UnitOfSpeed,
     UnitOfTemperature,
 )
@@ -95,7 +95,7 @@ SENSOR_DESCRIPTIONS: tuple[ZurichseeSensorEntityDescription, ...] = (
         translation_key="humidity",
         device_class=SensorDeviceClass.HUMIDITY,
         state_class=SensorStateClass.MEASUREMENT,
-        native_unit_of_measurement=PERCENTAGE,
+        native_unit_of_measurement=UnitOfRatio.PERCENTAGE,
         suggested_display_precision=0,
     ),
     ZurichseeSensorEntityDescription(
