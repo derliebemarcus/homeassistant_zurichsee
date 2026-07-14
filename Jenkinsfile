@@ -21,7 +21,6 @@ if (ciDocumentationOnlyShortcut(
     return
 }
 
-
 ciHomeAssistantIntegration(
     scm: scm,
     agentLabel: 'klymene',
@@ -43,16 +42,48 @@ ciHomeAssistantIntegration(
     reportRoot: 'reports',
     prepareCommand: 'chmod 700 tools/jenkins_prepare.sh && tools/jenkins_prepare.sh',
     commands: [
-        pytest: 'chmod 700 tools/jenkins_python_tasks.sh && tools/jenkins_python_tasks.sh pytest',
-        ruffLint: 'chmod 700 tools/jenkins_python_tasks.sh && tools/jenkins_python_tasks.sh ruff-lint',
-        ruffFormat: 'chmod 700 tools/jenkins_python_tasks.sh && tools/jenkins_python_tasks.sh ruff-format',
-        mypy: 'chmod 700 tools/jenkins_python_tasks.sh && tools/jenkins_python_tasks.sh mypy',
-        translations: 'chmod 700 tools/jenkins_python_tasks.sh && tools/jenkins_python_tasks.sh translations',
-        pipAudit: 'chmod 700 tools/jenkins_python_tasks.sh && tools/jenkins_python_tasks.sh pip-audit',
-        mutation: 'chmod 700 tools/jenkins_python_tasks.sh && tools/jenkins_python_tasks.sh mutation',
-        dependencyConsistency: 'chmod 700 tools/jenkins_python_tasks.sh && tools/jenkins_python_tasks.sh dependency-consistency',
+        pytest: '''
+            chmod 700 tools/jenkins_python_tasks.sh &&
+              tools/jenkins_python_tasks.sh pytest
+        ''',
+        ruffLint: '''
+            chmod 700 tools/jenkins_python_tasks.sh &&
+              tools/jenkins_python_tasks.sh ruff-lint
+        ''',
+        ruffFormat: '''
+            chmod 700 tools/jenkins_python_tasks.sh &&
+              tools/jenkins_python_tasks.sh ruff-format
+        ''',
+        mypy: '''
+            chmod 700 tools/jenkins_python_tasks.sh &&
+              tools/jenkins_python_tasks.sh mypy
+        ''',
+        translations: '''
+            chmod 700 tools/jenkins_python_tasks.sh &&
+              tools/jenkins_python_tasks.sh translations
+        ''',
+        pipAudit: '''
+            chmod 700 tools/jenkins_python_tasks.sh &&
+              tools/jenkins_python_tasks.sh pip-audit
+        ''',
+        mutation: '''
+            chmod 700 tools/jenkins_python_tasks.sh &&
+              tools/jenkins_python_tasks.sh mutation
+        ''',
+        dependencyConsistency: '''
+            chmod 700 tools/jenkins_python_tasks.sh &&
+              tools/jenkins_python_tasks.sh dependency-consistency
+        ''',
         codeql: 'chmod 700 tools/jenkins_codeql.sh && tools/jenkins_codeql.sh',
         sonar: 'chmod 700 tools/jenkins_sonar.sh && tools/jenkins_sonar.sh',
+        actionlint: '''
+            test -n "$(find .forgejo/workflows -type f \
+              \( -name '*.yml' -o -name '*.yaml' \) -print -quit)"
+            find .forgejo/workflows -type f \
+              \( -name '*.yml' -o -name '*.yaml' \) \
+              -exec podman run --rm -v "$PWD:/repo:z" -w /repo \
+                docker.io/rhysd/actionlint:latest {} +
+        ''',
     ],
     mutation: [
         artifacts: 'reports/mutation/**,mutants/.mutmut-cache/**,.mutmut-cache',
@@ -85,7 +116,7 @@ ciHomeAssistantIntegration(
             enabled: true,
             toolName: 'codeql',
             toolPath: 'codeql',
-            languages: ['python', 'actions'],
+            languages: ['python'],
         ],
         osv: [enabled: true],
         actionlint: [enabled: true],
