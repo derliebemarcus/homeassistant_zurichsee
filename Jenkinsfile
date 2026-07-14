@@ -77,12 +77,15 @@ ciHomeAssistantIntegration(
         codeql: 'chmod 700 tools/jenkins_codeql.sh && tools/jenkins_codeql.sh',
         sonar: 'chmod 700 tools/jenkins_sonar.sh && tools/jenkins_sonar.sh',
         actionlint: '''
-            test -n "$(find .forgejo/workflows -type f \
-              \( -name '*.yml' -o -name '*.yaml' \) -print -quit)"
-            find .forgejo/workflows -type f \
-              \( -name '*.yml' -o -name '*.yaml' \) \
-              -exec podman run --rm -v "$PWD:/repo:z" -w /repo \
-                docker.io/rhysd/actionlint:latest {} +
+            workflow_files="$(
+              find .forgejo/workflows -type f -name '*.yml' -print
+              find .forgejo/workflows -type f -name '*.yaml' -print
+            )"
+            test -n "$workflow_files"
+            echo "$workflow_files" | while IFS= read -r workflow; do
+              podman run --rm -v "$PWD:/repo:z" -w /repo \
+                docker.io/rhysd/actionlint:latest "$workflow"
+            done
         ''',
     ],
     mutation: [
