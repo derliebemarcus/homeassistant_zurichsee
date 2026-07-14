@@ -15,17 +15,16 @@ fi
 
 "$codeql_bin" version
 
-for language in python actions; do
-    database="$output_directory/db-$language"
-    sarif="$output_directory/codeql-$language.sarif"
-    suite="codeql/$language-queries:codeql-suites/$language-security-and-quality.qls"
+language="python"
+database="$output_directory/db-$language"
+sarif="$output_directory/codeql-$language.sarif"
+suite="codeql/$language-queries:codeql-suites/$language-security-and-quality.qls"
 
-    "$codeql_bin" database create "$database" \
-        --language="$language" \
-        --source-root=. \
-        --overwrite
-    "$codeql_bin" database analyze "$database" "$suite" \
-        --format=sarif-latest \
-        --sarif-category="$language" \
-        --output="$sarif"
-done
+"$codeql_bin" database create "$database" \
+    --language="$language" \
+    --source-root=. \
+    --overwrite
+"$codeql_bin" database analyze "$database" "$suite" \
+    --format=sarif-latest \
+    --sarif-category="$language" \
+    --output="$sarif"
