@@ -18,6 +18,9 @@ Forgejo API, validates workflows under `.forgejo/workflows/`, and delegates rele
 creation to Forgejo. CodeQL analyzes Python; Forgejo workflows are checked separately by
 Actionlint in Forgejo compatibility mode.
 
+Repository Rules require single-line commit messages to start with one of `add:`,
+`change:`, `deprecate:`, `remove:`, `fix:`, `build:`, or `chore:`.
+
 Documentation-only changes are classified before the full profile starts. Repository
 documentation is validated through the central documentation contract.
 
