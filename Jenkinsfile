@@ -3,6 +3,11 @@
 ciRepositoryDocumentationContract(
     scm: scm,
     agentLabel: 'klymene',
+    repository: [
+        provider: 'forgejo',
+        owner: 'siczb',
+        name: 'homeassistant_zurichsee',
+    ],
 )
 
 if (ciDocumentationOnlyShortcut(
