@@ -3,7 +3,7 @@
 # pytest-homeassistant-custom-component==0.13.346
 pytest-asyncio==1.4.0
 pytest-cov
-pytest-homeassistant-custom-component==0.13.346
+pytest-homeassistant-custom-component==0.13.361
 ruff>=0.15.16
 mypy>=2.1.0
 mutmut>=3.6.0
