@@ -29,6 +29,8 @@ Home Assistant custom integration for weather stations of the Wasserschutzpolize
 
 ## Installation
 
+[![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=derliebemarcus&repository=homeassistant_zurichsee&category=integration)
+
 ### HACS (Recommended)
 
 1. Open HACS in your Home Assistant instance.
