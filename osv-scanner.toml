@@ -1,3 +1,3 @@
-[[IgnoredVulns]]
-id = "GHSA-6w46-j5rx-g56g"
-reason = "Downgraded due to dependency conflict with pytest-homeassistant-custom-component. Risk is accepted for development/test environment."
+# No active OSV waivers under the Home Assistant 2026.11.0 baseline.
+# The former pytest-homeassistant-custom-component compatibility exception is obsolete.
+# Only documented, currently unavoidable findings may be temporarily waived.
