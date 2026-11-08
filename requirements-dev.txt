@@ -1,9 +1,9 @@
 -r requirements.txt
-# Keep pytest-homeassistant-custom-component and pytest-asyncio aligned.
-# pytest-homeassistant-custom-component==0.13.346
+# Test against the exact Home Assistant Core 2026.11.0 release.
+# pytest-homeassistant provides matching HA dependencies and fixtures.
 pytest-asyncio==1.4.0
 pytest-cov
-pytest-homeassistant-custom-component==0.13.346
+pytest-homeassistant==2026.11.0
 ruff>=0.15.16
 mypy>=2.1.0
 mutmut>=3.6.0
