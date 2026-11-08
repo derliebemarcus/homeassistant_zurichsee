@@ -1,5 +1,6 @@
 -r requirements.txt
 # Keep pytest-homeassistant-custom-component and pytest-asyncio aligned.
+homeassistant==2026.11.0
 # pytest-homeassistant-custom-component==0.13.346
 pytest-asyncio==1.4.0
 pytest-cov
